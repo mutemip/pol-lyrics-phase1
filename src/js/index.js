@@ -27,3 +27,9 @@ form.addEventListener('submit', e => {
     //searchValue.reset();
 })
 
+//event listener for key up
+const searchOnKeyUp =  () => {
+    searchValue = search.value.trim();
+    searchSong(searchValue)
+}
+
