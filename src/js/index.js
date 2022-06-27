@@ -13,3 +13,17 @@ function loadClient(){
     err => console.error("Error loading GAPI client for API", err));
 }
 
+const apiUrl = "https://api.lyrics.ovh";
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    searchValue = search.ariaValueMax.trim();
+    //make sure searchVAlue is not empty
+    if(!searchValue){
+        alert("Enter something to search");
+    }else{
+        searchSong(searchValue);
+    }
+    //searchValue.reset();
+})
+
