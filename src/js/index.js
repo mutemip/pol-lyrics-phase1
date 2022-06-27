@@ -33,3 +33,12 @@ const searchOnKeyUp =  () => {
     searchSong(searchValue)
 }
 
+//searchSong Fn
+async function searchSong(searchVAlue){
+    const searchResult = await fetch(`${apiUrl}/suggest/${searchVAlue}`)
+    const data = await searchResult.json();
+
+    //call showData fn
+    showData(data);
+}
+
