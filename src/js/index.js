@@ -42,3 +42,20 @@ async function searchSong(searchVAlue){
     showData(data);
 }
 
+function showData(data){
+    result.innerHTML = `
+   
+    <ul class="song-list">
+      ${data.data
+        .map(song=> `<li>
+                    <div>
+                        <strong>${song.artist.name}</strong> -${song.title} 
+                    </div>
+                    <span data-artist="${song.artist.name}" data-songtitle="${song.title}"> get lyrics</span>
+                </li>`
+        )
+        .join('')}
+    </ul>
+  `;
+  document.getElementById('here').innerHTML = ''
+}
