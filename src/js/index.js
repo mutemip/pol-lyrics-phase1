@@ -27,6 +27,7 @@ form.addEventListener('submit', e=> {
         searchSong(searchValue)
     }
     //searchSong.reset();
+    e.target.reset();
 })
 
 // // Key up event listner
