@@ -23,8 +23,9 @@ Landing page:
 Songs List After Search
 
 <img src="./src/images/POL-lyrics-results.png">
-./src/images/POL-lyrics-results.png
+
 
 Song Lyrics after clicking "Get Lyrics" Button
 
-./src/images/lyrics-results.png
+<img src="./src/images/lyrics-results.png">
+
