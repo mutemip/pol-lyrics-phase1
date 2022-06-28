@@ -21,19 +21,19 @@ form.addEventListener('submit', e=> {
     searchValue = search.value.trim();
 
     if(!searchValue){
-        alert("There is nothing to search")
+        alert("Enter Something to search")
     }
     else{ 
         searchSong(searchValue)
     }
-    searchSong.reset();
+    //searchSong.reset();
 })
 
-// Key up event listner
-const searchOnKeyUp =() =>{
-    searchValue = search.value.trim();
-    searchSong(searchValue)
-}
+// // Key up event listner
+// const searchOnKeyUp =() =>{
+//     searchValue = search.value.trim();
+//     searchSong(searchValue)
+// }
 //search song 
 async function searchSong(searchValue){
     const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`)
@@ -110,14 +110,6 @@ result.addEventListener('click', e=>{
     
 })
 
-/*************************************************
- * 
- * 
- * 
- * 
- * 
- * ************************************************
- */
 const execute = (artist, songTitle)=>{
     var pageToken = '';
 
