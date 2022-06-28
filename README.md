@@ -1,6 +1,6 @@
 Documentation
 
-Project Name: POL Lyrics
+Project Name: POL Lyrics, \n
 Authour: Mutemip
 
 Description
