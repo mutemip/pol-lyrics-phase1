@@ -100,3 +100,43 @@ result.addEventListener('click', e=>{
     }
     
 })
+
+const execute = (artist, songTitle)=>{
+    var pageToken = '';
+
+    var arr_search = {
+        "part": 'snippet',
+        "type": 'video',
+        "order": 'relevance',
+        "maxResults": 1,
+        "q": songTitle + artist
+    };
+ 
+    if (pageToken != '') {
+        arr_search.pageToken = pageToken;
+    }
+ 
+    return gapi.client.youtube.search.list(arr_search)
+    .then(function(response) {
+        // Handle the results here (response.result has the parsed body).
+        const listItems = response.result.items;
+        if (listItems) {
+            let output = `<h4 style="margin-bottom:30px;"><strong>${artist}</strong> - ${songTitle}</h4><ul>`;
+ 
+            listItems.forEach(item => {
+                const videoId = item.id.videoId;
+                const videoTitle = item.snippet.title;
+                output += `
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=${videoId}"><img src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" /></li>
+                `;
+            });
+            output += '</ul>';
+ 
+            // Output list
+            document.getElementById('video').innerHTML = output
+           
+        }
+    },
+    function(err) { console.error("Execute error", err); });
+    
+}
