@@ -85,5 +85,18 @@ async function getLyrics(artist, songTitle) {
     <div data-artist="${artist}" data-songtitle="${songTitle}"> get lyrics</div>
     <p style="margin-top:20px;">${lyrics}</p>
 `    
-    
 }
+
+//event listener in get song button
+result.addEventListener('click', e=>{
+    const clickedElement = e.target;
+
+    //checking clicked elemet is button or not
+    if (clickedElement.tagName === 'DIV'){
+        const artist = clickedElement.getAttribute('data-artist');
+        const songTitle = clickedElement.getAttribute('data-songtitle');
+        
+        execute(artist, songTitle);
+    }
+    
+})
