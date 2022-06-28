@@ -15,3 +15,15 @@ Here is a live link to the project: https://mutemip.github.io/pol-lyrics-phase1/
 
 Here is the Interface of the project:
 
+Landing page:
+./src/images/landing-page.png
+
+<img src="./src/images/landing-page.png">
+
+Songs List After Search
+
+./src/images/POL-lyrics-results.png
+
+Song Lyrics after clicking "Get Lyrics" Button
+
+./src/images/lyrics-results.png
