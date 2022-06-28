@@ -1,48 +1,51 @@
-//DOM Element Selectors
+
 const form = document.getElementById('form')
 const search = document.getElementById('search')
 const result = document.getElementById('result')
-
-//load API client - Hoisting
 gapi.load("client", loadClient);
-
-function loadClient(){
+ 
+function loadClient() {
     gapi.client.setApiKey("AIzaSyCXd8-DzhjLSwKvOTPJzFJkZHiKvsPNAJs");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-    .then(() => console.log("GAPI client loaded for API"), 
-    err => console.error("Error loading GAPI client for API", err));
-}
+        .then(function() { console.log("GAPI client loaded for API"); },
+                function(err) { console.error("Error loading GAPI client for API", err); });
+};
+// Make sure the client is loaded before calling this method.
 
-const apiUrl = "https://api.lyrics.ovh";
 
-form.addEventListener('submit', e => {
+/// api URL ///
+const apiURL = 'https://api.lyrics.ovh';
+
+form.addEventListener('submit', e=> {
     e.preventDefault();
-    searchValue = search.ariaValueMax.trim();
-    //make sure searchVAlue is not empty
+    searchValue = search.value.trim();
+
     if(!searchValue){
-        alert("Enter something to search");
-    }else{
-        searchSong(searchValue);
+        alert("There is nothing to search")
     }
-    //searchValue.reset();
+    else{ 
+        searchSong(searchValue)
+    }
+    searchSong.reset();
 })
 
-//event listener for key up
-const searchOnKeyUp =  () => {
+// Key up event listner
+const searchOnKeyUp =() =>{
     searchValue = search.value.trim();
     searchSong(searchValue)
 }
-
-//searchSong Fn
-async function searchSong(searchVAlue){
-    const searchResult = await fetch(`${apiUrl}/suggest/${searchVAlue}`)
+//search song 
+async function searchSong(searchValue){
+    const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`)
     const data = await searchResult.json();
 
-    //call showData fn
+    // console.log(finaldata)
     showData(data);
 }
 
+//display final result in DO
 function showData(data){
+  
     result.innerHTML = `
    
     <ul class="song-list">
@@ -57,23 +60,28 @@ function showData(data){
         .join('')}
     </ul>
   `;
-  document.getElementById('here').innerHTML = ''
+  document.getElementById('video').innerHTML = ''
+
+
 }
 
-//e listener for get lyrics btn
+
+
+
+//event listener in get lyrics button
 result.addEventListener('click', e=>{
-    const clickElement = e.target;
+    const clickedElement = e.target;
 
-    //check clicked element
-    if (clickElement.tagName === 'SPAN'){
-        const artist = clickElement.getAttribute('data-artist');
-        const songTitle = clickElement.getAttribute('data-songtitle');
-
+    //checking clicked elemet is button or not
+    if (clickedElement.tagName === 'SPAN'){
+        const artist = clickedElement.getAttribute('data-artist');
+        const songTitle = clickedElement.getAttribute('data-songtitle');
+        
         getLyrics(artist, songTitle)
     }
 })
 
-//get song lyrics
+// Get lyrics for song
 async function getLyrics(artist, songTitle) {
   
     const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
@@ -85,6 +93,7 @@ async function getLyrics(artist, songTitle) {
     <div data-artist="${artist}" data-songtitle="${songTitle}"> get lyrics</div>
     <p style="margin-top:20px;">${lyrics}</p>
 `    
+    
 }
 
 //event listener in get song button
@@ -101,6 +110,14 @@ result.addEventListener('click', e=>{
     
 })
 
+/*************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ * ************************************************
+ */
 const execute = (artist, songTitle)=>{
     var pageToken = '';
 
