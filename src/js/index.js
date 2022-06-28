@@ -59,3 +59,16 @@ function showData(data){
   `;
   document.getElementById('here').innerHTML = ''
 }
+
+//e listener for get lyrics btn
+result.addEventListener('click', e=>{
+    const clickElement = e.target;
+
+    //check clicked element
+    if (clickElement.tagName === 'SPAN'){
+        const artist = clickElement.getAttribute('data-artist');
+        const songTitle = clickElement.getAttribute('data-songtitle');
+
+        getLyrics(artist, songTitle)
+    }
+})
